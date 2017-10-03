@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="51a7e865-575c-46ec-82a1-39651468751f" activeEnvironment="Default" name="James_Villas_API" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="TestSuite_James_Villas"/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="true"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="true"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="true"/>
+  <con:entry key="Export JUnit Results with test properties" value="true"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Export All" value="true"/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value="C:\Users\ben.lowder\OneDrive - Dart Group PLC\Automation\SOAPUI - Holidays Content API\SOAPUI - Holidays Content API\Test Results\JVH"/>
+  <con:entry key="Select Report Type" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value="${#Project#TestURL}"/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:RestService" id="8f29397c-33e8-45c2-ba84-313935017a73" wadlVersion="http://wadl.dev.java.net/2009/02" name="J2BI.Holidays.JamesVillas.Api" type="rest" basePath="/J2BI.Holidays.JamesVillas.Content.Api" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description xsi:nil="true"/><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>${#Project#TestURL}</con:endpoint><con:endpoint>${#Project#UatURL}</con:endpoint></con:endpoints><con:resource name="/facility" path="/facility" id="7a5eebee-1a0c-47f8-a8c6-49a255895c35"><con:settings/><con:parameters/><con:method name="Facility_GetAll" id="386fce4c-cb31-40fe-9aa9-e88c3eae8420" method="GET"><con:description>
+</con:description><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" id="318ef710-5066-4475-a934-28af0caa49eb" mediaType="application/json"><con:settings/><con:endpoint>http://j2lbiapptst01.dartgroup.plc</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/></con:request></con:method></con:resource><con:resource name="/property/modified-since/{date}" path="/property/modified-since/{date}" id="eec2c623-b88c-4949-96db-2991e8558ac4"><con:settings/><con:parameters/><con:method name="Property_GetModifiedSince" id="8abebf23-d865-4e31-944a-c8abdf07ed68" method="GET"><con:description>
+</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>date</con:name><con:style>TEMPLATE</con:style><con:description xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:request name="Request 1" id="44b0866f-2e62-4d20-bdc3-4882a995a4eb" mediaType="application/json"><con:settings/><con:endpoint>http://j2lbiapptst01.dartgroup.plc</con:endpoint><con:request/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/></con:request></con:method></con:resource><con:resource name="/property/{id}" path="/property/{id}" id="93372783-4ae9-4f8e-b0a1-4e8c1a03d8f2"><con:settings/><con:parameters/><con:method name="Property_Get" id="eb2d1eb3-8f70-435d-8e90-0aedba5f2f6e" method="GET"><con:description>
+</con:description><con:settings/><con:parameters><con:parameter required="true"><con:name>id</con:name><con:style>TEMPLATE</con:style><con:description xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>text/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="aa8f724d-bef8-4e50-a346-0677f7169e93" mediaType="application/json"><con:settings/><con:endpoint>http://j2lbiapptst01.dartgroup.plc</con:endpoint><con:request/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="80a81692-bc14-40c2-b0f0-df197475a103" name="TestSuite_James_Villas_SmokeTests"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="5ff7c5f2-05df-4515-8c8f-8637f0b9dac5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Facility" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="GET_Facility" id="b5bbffce-de8f-468d-930a-21bb14a4690a"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Facility_GetAll" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/facility" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_Facility" id="750c2682-4c6a-4715-8b82-b6213fb57b53" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint xsi:nil="true"/><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Holidays.JamesVillas.Content.Api/facility</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="3a48676b-96c1-495a-8066-b3b24f7f8b59" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="36d81810-0f76-41a3-9951-ecf1c563bc92" name="JsonPath Match"><con:configuration><path>.</path><content>[{"id":1,"name":"Two cooking rings"}, {"id":2,"name":"Four cooking rings"}, {"id":3,"name":"Six cooking rings"}, {"id":4,"name":"Air Conditioning"}, {"id":5,"name":"Baby changing"}, {"id":6,"name":"Balcony"}, {"id":7,"name":"Balinese Beds"}, {"id":8,"name":"Bar"}, {"id":9,"name":"Bar Area"}, {"id":10,"name":"Basin"}, {"id":11,"name":"Bath"}, {"id":12,"name":"Bath/Shower Seats Available"}, {"id":13,"name":"Bath Towels"}, {"id":14,"name":"Bath with shower over"}, {"id":15,"name":"Barbecue"}, {"id":16,"name":"Bed linen"}, {"id":17,"name":"Bidet"}, {"id":18,"name":"Breakfast bar"}, {"id":19,"name":"Bunk beds"}, {"id":20,"name":"Camp bed"}, {"id":21,"name":"Ceiling Fan"}, {"id":22,"name":"Changing rooms"}, {"id":23,"name":"Chest of drawers"}, {"id":24,"name":"Children section"}, {"id":25,"name":"Coffee Making Facilities"}, {"id":26,"name":"Single Cooking Ring"}, {"id":27,"name":"Dining Table and Chairs"}, {"id":28,"name":"Dining area"}, {"id":29,"name":"Dining table"}, {"id":30,"name":"Dishwasher"}, {"id":31,"name":"Double Basin"}, {"id":32,"name":"Double Bed"}, {"id":33,"name":"Double or twin beds"}, {"id":34,"name":"Double shower"}, {"id":35,"name":"DVD player"}, {"id":36,"name":"Enclosed Garden"}, {"id":37,"name":"Fence"}, {"id":38,"name":"Fireplace"}, {"id":39,"name":"Foldaway bed"}, {"id":40,"name":"Freezer"}, {"id":41,"name":"Fridge"}, {"id":42,"name":"Fridge Freezer"}, {"id":43,"name":"Games console"}, {"id":44,"name":"Garage"}, {"id":45,"name":"Garden Furniture"}, {"id":46,"name":"Gym Equipment"}, {"id":47,"name":"Hairdryer"}, {"id":48,"name":"Hammocks"}, {"id":49,"name":"Handrails"}, {"id":50,"name":"Heating"}, {"id":51,"name":"Hoists"}, {"id":52,"name":"Hot tub"}, {"id":53,"name":"Ironing facilities"}, {"id":54,"name":"Kettle"}, {"id":55,"name":"King size bed"}, {"id":56,"name":"Lawn"}, {"id":57,"name":"Lift"}, {"id":58,"name":"Microwave"}, {"id":59,"name":"Music system"}, {"id":60,"name":"Oven"}, {"id":61,"name":"Parasol"}, {"id":62,"name":"Electring parking gates"}, {"id":63,"name":"Pool Slide"}, {"id":64,"name":"Gated Access"}, {"id":65,"name":"Ladder Access"}, {"id":66,"name":"Pool furniture"}, {"id":67,"name":"Poolside shower"}, {"id":68,"name":"Pool table"}, {"id":69,"name":"Pool towels"}, {"id":70,"name":"Queen size bed"}, {"id":71,"name":"Ramp"}, {"id":72,"name":"Roman steps"}, {"id":73,"name":"Safety Deposit Box"}, {"id":74,"name":"Sandwich maker"}, {"id":75,"name":"Sauna"}, {"id":76,"name":"Seating"}, {"id":77,"name":"Shaded area"}, {"id":78,"name":"Shower"}, {"id":79,"name":"Shower (Cubicle)"}, {"id":80,"name":"Shower (Open)"}, {"id":81,"name":"Shrubs Flower Beds"}, {"id":82,"name":"Single bed"}, {"id":83,"name":"Sofa bed"}, {"id":84,"name":"Stairs"}, {"id":85,"name":"Sun beds"}, {"id":86,"name":"Swing beds"}, {"id":87,"name":"Table and chairs"}, {"id":88,"name":"Table tennis"}, {"id":89,"name":"Tennis"}, {"id":90,"name":"Terrace"}, {"id":91,"name":"Toaster"}, {"id":92,"name":"Toilet"}, {"id":93,"name":"Towel service"}, {"id":94,"name":"Tumble dryer"}, {"id":95,"name":"Television"}, {"id":96,"name":"Television few English channels"}, {"id":97,"name":"Flat screen television"}, {"id":98,"name":"Television local channels"}, {"id":99,"name":"Television many English channels"}, {"id":100,"name":"Twin beds"}, {"id":101,"name":"Country view"}, {"id":102,"name":"Lake view"}, {"id":103,"name":"Sea view"}, {"id":104,"name":"Wardrobes"}, {"id":105,"name":"Walk in wardrobe"}, {"id":106,"name":"Washing machine"}, {"id":107,"name":"Whirlpool"}, {"id":108,"name":"Whirlpool bath"}, {"id":109,"name":"Wifi"}, {"id":110,"name":"Hob"}, {"id":111,"name":"Comfortable Seating"}, {"id":112,"name":"Doors To Terrace Gardens"}, {"id":113,"name":"Private Pool"}, {"id":114,"name":"Air hockey table"}, {"id":115,"name":"Badminton"}, {"id":116,"name":"Basic complimentary welcome pack"}, {"id":117,"name":"Basic complimentary welcome pack, full welcome pack available at additional cost"}, {"id":118,"name":"Basketball"}, {"id":119,"name":"Bath with shower attachment"}, {"id":120,"name":"Bathrobe"}, {"id":121,"name":"Bathrobe and slippers"}, {"id":122,"name":"Billiards table"}, {"id":123,"name":"Bluetooth speaker"}, {"id":124,"name":"Blu-Ray DVD player"}, {"id":125,"name":"Bread oven"}, {"id":126,"name":"Butler service*"}, {"id":127,"name":"Chef service*"}, {"id":128,"name":"Cleaning service - minimum once per stay"}, {"id":129,"name":"Complimentary bottle of wine"}, {"id":130,"name":"Complimentary breakfast"}, {"id":131,"name":"Complimentary seasonal fruit platter"}, {"id":132,"name":"Complimentary welcome pack"}, {"id":133,"name":"Covered pool"}, {"id":134,"name":"Daily cleaning service"}, {"id":135,"name":"Dart Board"}, {"id":136,"name":"Desk"}, {"id":137,"name":"Exercise swim jet"}, {"id":138,"name":"Exterior access"}, {"id":139,"name":"Flower Garden"}, {"id":140,"name":"Football"}, {"id":141,"name":"Football pitch"}, {"id":142,"name":"Four-poster bed"}, {"id":143,"name":"Gated pool"}, {"id":144,"name":"Giant chess board"}, {"id":145,"name":"Golf practise putting hole"}, {"id":146,"name":"Hammock"}, {"id":147,"name":"Herb Garden"}, {"id":148,"name":"Home cinema system"}, {"id":149,"name":"Indoor pool"}, {"id":150,"name":"Interconnecting doors"}, {"id":151,"name":"iPod docking station"}, {"id":152,"name":"Kitchenette"}, {"id":153,"name":"Laundry service available"}, {"id":154,"name":"Located in the annexe, accessed externally"}, {"id":155,"name":"Located in the annexe, accessed internally"}, {"id":156,"name":"Lounge"}, {"id":157,"name":"Mini bar*"}, {"id":158,"name":"Mini fridge"}, {"id":159,"name":"Mini oven"}, {"id":160,"name":"Multipurpose sports court"}, {"id":161,"name":"Multi-room audio system"}, {"id":162,"name":"Nanny/Babysitter service*"}, {"id":163,"name":"Open plan to dining area"}, {"id":164,"name":"Patio doors"}, {"id":165,"name":"Petanque"}, {"id":166,"name":"Piano"}, {"id":167,"name":"Pizza oven"}, {"id":168,"name":"Poker table"}, {"id":169,"name":"Poolside toilet"}, {"id":170,"name":"Portable fan"}, {"id":171,"name":"Private outside shower"}, {"id":172,"name":"Projector and screen"}, {"id":173,"name":"Putting green"}, {"id":174,"name":"Quadruple beds"}, {"id":175,"name":"Retractable shading"}, {"id":176,"name":"Room service"}, {"id":177,"name":"Saltwater Pool"}, {"id":178,"name":"Sandpit"}, {"id":179,"name":"Self-service pool bar"}, {"id":180,"name":"Single bed"}, {"id":181,"name":"Snooker table"}, {"id":182,"name":"Solarium"}, {"id":183,"name":"Stair gate(s)"}, {"id":184,"name":"Steam room"}, {"id":185,"name":"Surround sound system"}, {"id":186,"name":"Swim-up bar"}, {"id":187,"name":"Swings"}, {"id":188,"name":"Table Football"}, {"id":189,"name":"Tennis court"}, {"id":190,"name":"Tennis equipment not provided"}, {"id":191,"name":"Tennis equipment provided"}, {"id":192,"name":"Triple beds"}, {"id":193,"name":"Under floor cooling system"}, {"id":194,"name":"Volleyball court"}, {"id":195,"name":"Volleyball net"}, {"id":196,"name":"Whirlpool bath with shower attachment"}, {"id":197,"name":"Whirlpool bath with shower over"}, {"id":198,"name":"Whirlpool section in pool"}, {"id":199,"name":"Outdoor bar"}, {"id":200,"name":"Food shopping service available at an extra cost"}, {"id":201,"name":"Barbecue*"}, {"id":202,"name":"Alfresco Dining"}]</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="18447583-06c2-47f5-917b-12675bcdfd95" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Property{id}" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="GetProperty-null" id="85cac85a-825a-4e49-9ce7-489a60bfce1c"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Property_Get" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/property/{id}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GetProperty-null" id="43b6cf75-db9f-40e0-9d49-055f1ea32dd8" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>${#Project#TestURL}</con:endpoint><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Services.Holidays.Content/facility/property/75090</con:originalUri><con:assertion type="GroovyScriptAssertion" id="3fcd71ba-1126-475e-976a-d8128527a629" name="Script Assertion"><con:configuration><scriptText>import com.eviware.soapui.support.GroovyUtils
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper 
+def response = messageExchange.response.responseContent
+def json = new JsonSlurper().parseText(response)
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context) 
+def jsonFormat = (response).toString()
+def id = messageExchange.modelItem.testStep.testCase.getPropertyValue("id")
+def correlationid = messageExchange.modelItem.testStep.testCase.testSuite.project.getPropertyValue("correlationid")
+def date = new Date().format("yyyy-MM-dd")
+def time = new Date().format("HH.mm.ss")
+def dataFolder = context.getProperty("RootResultFolder")
+def fileName = id + ".txt"
+def rootFolder = dataFolder + fileName 
+def logFile = new File(rootFolder)
+
+//Search Description
+def resultName = json.name
+
+//Search - id
+def resultId = json.id
+
+//Search - distances
+def resultDistances = json.distances
+
+//Search - general
+def resultGeneral = json.general
+
+//Search - areas
+def resultAreas = json.areas
+
+//Search - parking
+def resultParking = json.parking
+
+//Search - pools
+def resultPools = json.pools
+
+
+assert resultName != null
+assert resultDistances != null
+assert resultId != null
+assert resultDistances != null
+assert resultGeneral != null
+assert resultAreas != null
+assert resultParking != null
+assert resultPools != null
+
+
+//context.testRunner.testCase.setPropertyValue( "items", resultItems)
+//context.testRunner.testCase.setPropertyValue( "description", resultItems)
+
+
+logFile.write "GUID (ID): " + id + "\n\n" + 
+ 			"DateTime Stamp: " +date+ " " + time + "\n" +
+ 			"X-Correlation-Id: " +correlationid+ "\n\n" + JsonOutput.prettyPrint(jsonFormat)</scriptText></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="f62855bb-5113-455b-92d6-854c98db0414" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestCase#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="ReadNextLine" id="546da41e-45a9-4855-b663-b0b29b0e0c0e"><con:settings/><con:config><script>import org.apache.poi.hssf.usermodel.*;
+
+cellDataFormatter = new HSSFDataFormatter()
+
+//Create formula evaluator
+fEval = new HSSFFormulaEvaluator(context.srcWkSheet.getWorkbook())
+
+//Increment the rowcounter then read in the next row of items
+context.rowCounter++;
+
+if(context.rowCounter&lt;=context.srcWkSheet.getLastRowNum()){//Check if we've reached the last row
+	curTC = testRunner.testCase
+	sourceRow = context.srcWkSheet.getRow(context.rowCounter)//Get a spreadsheet row
+	
+	//Step through cells in the row and populate property data 
+	idCell = sourceRow.getCell(0)
+	curTC.setPropertyValue("id",cellDataFormatter.formatCellValue(idCell,fEval))
+
+	//Rename test cases for readability in the TestSuite log
+	//curTC.getTestStepAt(0).setName("GetProperty-" + curTC.getPropertyValue("AtNum"))
+	
+	//Go back to first test request with newly copied properties
+	testRunner.gotoStep(0)
+}
+</script></con:config></con:testStep><con:setupScript>import org.apache.poi.hssf.usermodel.*;
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context) 
+def dataFolder = groovyUtils.projectPath
+def dataSource = testRunner.testCase.testSuite.project.getPropertyValue( "TestDataSource" )
+//Create data formatter
+dFormatter = new HSSFDataFormatter()
+
+//Create a new workbook using POI API
+//srcBook = new HSSFWorkbook(new FileInputStream(new File(dataFolder + "/Test Data/JVH_IDs.xls")))
+srcBook = new HSSFWorkbook(new FileInputStream(new File(dataFolder + dataSource)))
+
+//Create formula evaluator to handle formula cells
+fEval = new HSSFFormulaEvaluator(srcBook)
+
+//Get first sheet of the workbook (assumes data is on first sheet)
+sourceSheet = srcBook.getSheetAt(0)
+
+//Sets row counter to 0 (first row)-- if your sheet has headers, you can set this to 1
+context.rowCounter = 1
+
+//Read in the contents of the first row
+sourceRow = sourceSheet.getRow(1)
+
+//Step through cells in the row and populate property values-- note the extra work for numbers
+idCell = sourceRow.getCell(0)
+testCase.setPropertyValue("id",dFormatter.formatCellValue(idCell,fEval))
+
+//Rename request test steps for readability in the log; append the element name to the test step names
+//testCase.getTestStepAt(0).setName("GetProperty-" + testCase.getPropertyValue("AtNum"))
+
+//Add references to sheet to re-use it in ReadNextLine step
+context.srcWkSheet = sourceSheet</con:setupScript><con:properties><con:property><con:name>id</con:name><con:value>11593</con:value></con:property></con:properties></con:testCase><con:testCase id="2719a1ad-9769-4e7f-97bb-d2b701545aa7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Property/modified-since{date}" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="GET_Property/modified-since" id="d6b5e1c8-e723-484c-ab81-5a4f3f678fcc"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Property_GetModifiedSince" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/property/modified-since/{date}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_Property/modified-since" id="cfd14b48-72a8-42c7-b9af-8dd12a63dbe7" mediaType="application/json"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint xsi:nil="true"/><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Holidays.JamesVillas.Content.Api/property/modified-since/2017-08-01</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="fab7a7d0-22db-425f-bd7c-a9583885730e" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="date" value="2017-08-01" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="0b50e1df-41fb-4542-a1c7-0d6c134ee749" name="TestSuite_James_Villas"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="2e4a9427-fa4c-40ff-81bc-6a3463730316" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Property(id)_Content" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="GetProperty-100" id="f4505975-5f01-4f95-b3ff-4d362920a24e"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Property_Get" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/property/{id}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GetProperty-null" id="35015a5e-cc5b-4e35-a888-0f7ff4cf8a4b" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://j2lbiapptst01.dartgroup.plc</con:endpoint><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Services.Holidays.Content/property/75072</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="774b7a61-08f5-49ef-bf18-bd3a80c66115" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b0078673-5ccf-4393-b912-86fc5f98c84c" name="Contains"><con:configuration><token>${#TestCase#Name}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestCase#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="ReadNextLine" id="b2066d2c-3330-4581-a0b8-65068dc6285e"><con:settings/><con:config><script>import org.apache.poi.hssf.usermodel.*;
+
+cellDataFormatter = new HSSFDataFormatter()
+
+//Create formula evaluator
+fEval = new HSSFFormulaEvaluator(context.srcWkSheet.getWorkbook())
+
+//Increment the rowcounter then read in the next row of items
+context.rowCounter++;
+
+if(context.rowCounter&lt;=context.srcWkSheet.getLastRowNum()){//Check if we've reached the last row
+	curTC = testRunner.testCase
+	sourceRow = context.srcWkSheet.getRow(context.rowCounter)//Get a spreadsheet row
+	
+	//Step through cells in the row and populate property data 
+	idCell = sourceRow.getCell(0)
+	curTC.setPropertyValue("id",cellDataFormatter.formatCellValue(idCell,fEval))
+
+	//Rename test cases for readability in the TestSuite log
+	curTC.getTestStepAt(0).setName("GetProperty-" + curTC.getPropertyValue("id"))
+	
+	//Go back to first test request with newly copied properties
+	testRunner.gotoStep(0)
+}
+</script></con:config></con:testStep><con:setupScript>import org.apache.poi.hssf.usermodel.*;
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context) 
+def dataFolder = groovyUtils.projectPath
+//Create data formatter
+dFormatter = new HSSFDataFormatter()
+
+//Create a new workbook using POI API
+srcBook = new HSSFWorkbook(new FileInputStream(new File(dataFolder + "/Test Data/JVH_IDs.xls")))
+
+//Create formula evaluator to handle formula cells
+fEval = new HSSFFormulaEvaluator(srcBook)
+
+//Get first sheet of the workbook (assumes data is on first sheet)
+sourceSheet = srcBook.getSheetAt(0)
+
+//Sets row counter to 0 (first row)-- if your sheet has headers, you can set this to 1
+context.rowCounter = 1
+
+//Read in the contents of the first row
+sourceRow = sourceSheet.getRow(1)
+
+//Step through cells in the row and populate property values-- note the extra work for numbers
+idCell = sourceRow.getCell(0)
+testCase.setPropertyValue("id",dFormatter.formatCellValue(idCell,fEval))
+
+//Rename request test steps for readability in the log; append the element name to the test step names
+testCase.getTestStepAt(0).setName("GetProperty-" + testCase.getPropertyValue("id"))
+
+//Add references to sheet to re-use it in ReadNextLine step
+context.srcWkSheet = sourceSheet</con:setupScript><con:properties><con:property><con:name>id</con:name><con:value>100</con:value></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:testSuite id="994d9226-889d-445e-a181-42a72a368a96" name="TestSuite_James_Villas_NegativeTests"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="d9c3ef72-c385-4470-af3a-49bade4b98f2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Property{id}_InvalidId" searchProperties="true"><con:settings/><con:testStep type="groovy" name="SetTestCasePropertyValues" id="0c14f20f-d41c-4c8b-8861-6590f3482bdb"><con:settings/><con:config><script>testRunner.testCase.setPropertyValue('id', "invalid")</script></con:config></con:testStep><con:testStep type="restrequest" name="GET_Property{id}" id="0f3b8c4e-0907-4e48-bd28-a3adfd96142b"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Property_Get" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/property/{id}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_Property{id}" id="dc9077cd-cd90-4167-b05b-2a9b9cb375cd" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint xsi:nil="true"/><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Services.Holidays.Content/property/invalid</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="927107a0-886d-45b2-af3d-3c646bfcc58c" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestCase#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>id</con:name><con:value>invalid</con:value></con:property></con:properties></con:testCase><con:testCase id="dc22c303-06ad-41bd-94b4-691f3aa8d660" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Property{id}_UnknownId" searchProperties="true"><con:settings/><con:testStep type="groovy" name="SetTestCasePropertyValues" id="c2327493-0730-424d-941f-c4c684339567"><con:settings/><con:config><script>testRunner.testCase.setPropertyValue('id', "71111")</script></con:config></con:testStep><con:testStep type="restrequest" name="GET_Property{id}" id="e49c9f3c-de31-470b-a49e-cdb37f70ad08"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Property_Get" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/property/{id}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_Property{id}" id="dc9077cd-cd90-4167-b05b-2a9b9cb375cd" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://j2lbiapptst01.dartgroup.plc</con:endpoint><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Services.Holidays.Content/property/invalid</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="927107a0-886d-45b2-af3d-3c646bfcc58c" name="Valid HTTP Status Codes"><con:configuration><codes>204</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${#TestCase#id}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>id</con:name><con:value>71111</con:value></con:property></con:properties></con:testCase><con:testCase id="180d67ae-ab06-44b7-bad4-70242941391c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GET_Property/modified-since{date}_InvalidDate" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="GET_Property/modified-since{date}" id="0944b61f-1beb-438b-829c-b834050c7d8a"><con:settings/><con:config service="J2BI.Holidays.JamesVillas.Api" methodName="Property_GetModifiedSince" resourcePath="/J2BI.Holidays.JamesVillas.Content.Api/property/modified-since/{date}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_Property/modified-since{date}" id="dc9077cd-cd90-4167-b05b-2a9b9cb375cd" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://j2lbiapptst01.dartgroup.plc</con:endpoint><con:request/><con:originalUri>http://j2lbiapptst01.dartgroup.plc/J2BI.Services.Holidays.Content/property/invalid</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="927107a0-886d-45b2-af3d-3c646bfcc58c" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="0e1b9cd2-bfcf-4e77-82d8-5dc0e68f6c2d" name="Contains"><con:configuration><token>The request is invalid.</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="${#TestCase#id}"/>
+  <con:entry key="date" value="01012017"/>
+</con:parameters></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>id</con:name><con:value/></con:property><con:property><con:name>date</con:name><con:value/></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>TestURL</con:name><con:value>http://j2lbiapptst01.dartgroup.plc</con:value></con:property><con:property><con:name>TestDataSource</con:name><con:value>/Test Data/JVH_IDs.xls</con:value></con:property><con:property><con:name>UatURL</con:name><con:value>http://j2lbiappuat01.dartrgroup.plc</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
