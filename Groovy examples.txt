@@ -1,0 +1,552 @@
+
+Groovy Script Examples 
+
+At the test case level, there are the following tabs towards the bottom of the screen: 
+
+
+Description Properties Setup Script TearDown Script 
+
+Properties will contain the properties referenced by the scripts 
+
+Setup Script contains script to be run before the request part of the test case, such as reading in data. The setup script in our example is: 
+
+
+ 
+
+
+import org.apache.poi.hssf.usermodel.*; 
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)  
+def dataFolder = groovyUtils.projectPath 
+//Create data formatter 
+dFormatter = new HSSFDataFormatter() 
+
+
+ 
+ 
+
+
+//Create a new workbook using POI API 
+srcBook = new HSSFWorkbook(new FileInputStream(new File(dataFolder + "/Test Data/JVH_IDs.xls"))) 
+
+
+ 
+ 
+
+
+//Create formula evaluator to handle formula cells 
+fEval = new HSSFFormulaEvaluator(srcBook) 
+
+
+ 
+ 
+
+
+//Get first sheet of the workbook (assumes data is on first sheet) 
+sourceSheet = srcBook.getSheetAt(0) 
+
+
+ 
+ 
+
+
+//Sets row counter to 0 (first row)-- if your sheet has headers, you can set this to 1 
+context.rowCounter = 1 
+
+
+ 
+ 
+
+
+//Read in the contents of the first row 
+sourceRow = sourceSheet.getRow(1) 
+
+
+ 
+ 
+
+
+//Step through cells in the row and populate property values-- note the extra work for numbers 
+idCell = sourceRow.getCell(0) 
+testCase.setPropertyValue("id",dFormatter.formatCellValue(idCell,fEval)) 
+
+
+ 
+ 
+
+
+//Rename request test steps for readability in the log; append the element name to the test step names 
+testCase.getTestStepAt(0).setName("GetProperty-" + testCase.getPropertyValue("id")) 
+
+
+ 
+ 
+
+
+//Add references to sheet to re-use it in ReadNextLine step 
+context.srcWkSheet = sourceSheet 
+
+
+ 
+
+
+TearDown script can contain script to be run at end of Test Case run. 
+
+
+ 
+
+
+In order to loop round your data input file, you will need a Groovy script step after then request step (call it something like ReadNextLine) 
+
+
+ 
+
+
+The script in our example is: 
+
+
+import org.apache.poi.hssf.usermodel.*; 
+
+
+ 
+ 
+
+
+cellDataFormatter = new HSSFDataFormatter() 
+
+
+ 
+ 
+
+
+//Create formula evaluator 
+fEval = new HSSFFormulaEvaluator(context.srcWkSheet.getWorkbook()) 
+
+
+ 
+ 
+
+
+//Increment the rowcounter then read in the next row of items 
+context.rowCounter++; 
+
+
+ 
+ 
+
+
+if(context.rowCounter<=context.srcWkSheet.getLastRowNum()){//Check if we've reached the last row 
+ curTC = testRunner.testCase 
+ sourceRow = context.srcWkSheet.getRow(context.rowCounter)//Get a spreadsheet row 
+  
+ //Step through cells in the row and populate property data  
+ idCell = sourceRow.getCell(0) 
+ curTC.setPropertyValue("id",cellDataFormatter.formatCellValue(idCell,fEval)) 
+
+
+ 
+ 
+
+
+ //Rename test cases for readability in the TestSuite log 
+ curTC.getTestStepAt(0).setName("GetProperty-" + curTC.getPropertyValue("id")) 
+  
+ //Go back to first test request with newly copied properties 
+ testRunner.gotoStep(0) 
+} 
+ 
+
+
+ 
+
+
+Groovy Scripts for working with CSV files 
+
+
+ 
+
+
+It is preferable to work with Excel files, but if necessary you can use CSV files.  
+
+
+There following examples work with CSV files and work in much the same way as the more elegant code shown above. These examples do however contain more sophisticated logging. 
+
+
+ 
+
+
+The order of steps in the example test are: 
+
+
+StartClearAllPropertyValues 
+
+
+ReadData 
+
+
+SetProperties 
+
+
+RequestStep 
+
+
+Assertion – Check for specified Values and logging 
+
+
+ConcludeTest 
+
+
+EndClearAppProperty Values 
+
+
+ 
+
+
+ 
+
+
+StartClearAllPropertyValues script – not sure how this works or how useful it is 
+
+
+ 
+
+
+context.testCase.properties.each { 
+ context.testCase.properties[it.key].value = '' 
+} 
+context.testCase.testSuite.properties.each { 
+ context.testCase.testSuite.properties[it.key].value = '' 
+} 
+
+
+ 
+ 
+
+
+testRunner.testCase.properties.each  
+{ 
+ if (it.value.name.startsWith("Output_"))  
+ { 
+  testRunner.testCase.setPropertyValue(it.value.name, "") 
+ } 
+} 
+
+
+ 
+
+
+ReadData script 
+
+
+ 
+
+
+// define properties required for the script to run.  
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)  
+def dataFolder = groovyUtils.projectPath 
+
+
+log.info "DATA FOLDER IS "+dataFolder 
+
+
+//Define an empty array list to load data from datasheet  
+def DataTable = []; 
+
+
+ 
+
+
+def date = new Date() 
+def folderTime = date.format("yyyy-MM-dd HH-mm-ss") 
+  
+// Read data file using InputStreamReader  
+File datafile = new File(dataFolder + "/Memphis Test Data/Negative High Priority/Margins Test File- Missing Fields-OutboundFlightId.csv"); 
+
+
+ 
+log.info "Fileloc: " + dataFolder + "/Memphis Test Data/Negative High Priority/Margins Test File- Missing Fields-OutboundFlightId.csv"  
+
+
+ 
+
+
+//We are using the row count to exclude header record 
+int currentRow= 1;  
+
+
+ 
+
+
+if (datafile.getName().equalsIgnoreCase("Margins Test File- Missing Fields-OutboundFlightId.csv")) {  
+ inputStream = new FileInputStream(datafile)  
+ dataReader = new BufferedReader(new InputStreamReader(inputStream))  
+ // Read records line by line 
+ dataReader.eachLine{ singleLine-> DataTable.add( singleLine.split(","))  
+ }  
+} 
+
+
+ 
+
+
+// Exclude header record  
+int totalRecords = (DataTable.size()-1)  
+log.info "check table size" 
+log.info DataTable.size() 
+context.setProperty( "dataFolder", dataFolder ) 
+
+
+// Store the data in soapui test context  
+context.setProperty( "DataTable", DataTable )  
+context.setProperty( "TotalRecords", totalRecords )  
+context.setProperty( "currentRow", currentRow )   
+
+
+ 
+
+
+SetProperties script 
+
+
+ 
+
+
+def DataTable = context.getProperty("DataTable") // Retrieve the test data from the testData property  
+def currentRow = context.getProperty("currentRow") // Track which line of the test input file we’re on  
+def singleLineArray =DataTable[currentRow] 
+
+
+ 
+ 
+
+
+testRunner.testCase.setPropertyValue('Id',singleLineArray[0]) 
+testRunner.testCase.setPropertyValue('Version',singleLineArray[1]) 
+testRunner.testCase.setPropertyValue('DebugMode',singleLineArray[2]) 
+testRunner.testCase.setPropertyValue('SeqId',singleLineArray[3]) 
+testRunner.testCase.setPropertyValue('OutboundFlightId',singleLineArray[4]) 
+testRunner.testCase.setPropertyValue('OutboundFlightIsAllocation',singleLineArray[5]) 
+testRunner.testCase.setPropertyValue('InboundFlightId',singleLineArray[6]) 
+testRunner.testCase.setPropertyValue('InboundFlightIsAllocation',singleLineArray[7]) 
+testRunner.testCase.setPropertyValue('ProviderId',singleLineArray[8]) 
+testRunner.testCase.setPropertyValue('ProviderHotelId',singleLineArray[9]) 
+testRunner.testCase.setPropertyValue('HotelStarRating',singleLineArray[10]) 
+testRunner.testCase.setPropertyValue('RegionId',singleLineArray[11]) 
+testRunner.testCase.setPropertyValue('RoomsSeqId',singleLineArray[12]) 
+testRunner.testCase.setPropertyValue('ProviderHotelRoomId',singleLineArray[13]) 
+testRunner.testCase.setPropertyValue('BoardTypeCode',singleLineArray[14]) 
+testRunner.testCase.setPropertyValue('NumAdults',singleLineArray[15]) 
+testRunner.testCase.setPropertyValue('NumChildren',singleLineArray[16]) 
+testRunner.testCase.setPropertyValue('DepartureDate',singleLineArray[17]) 
+testRunner.testCase.setPropertyValue('DurationDays',singleLineArray[18]) 
+testRunner.testCase.setPropertyValue('ChannelId',singleLineArray[19]) 
+testRunner.testCase.setPropertyValue('TotalAccommodationCost',singleLineArray[20]) 
+testRunner.testCase.setPropertyValue('DateTime',singleLineArray[21]) 
+
+
+ 
+ 
+
+
+Assertion – Check for specified Values and logging script 
+
+
+ 
+
+
+//This section gets the contents of the request & response and puts into variables json Request & jsonResponse  
+log.info "IN THE SCRIPT ASSERTION" 
+
+
+import groovy.json.JsonSlurper  
+def slurper = new JsonSlurper() //This is an object that parses the request & response to make it easier to access the elements 
+def request  = context.expand( '${Margin_GetMargins - MissingFields2#Request}' ).toString() //Gets the content of request for the specified Test Step 
+def response = context.expand( '${Margin_GetMargins - MissingFields2#Response}' ).toString()//Gets the content of response for the specified Test Step 
+def endpoint = messageExchange.getEndpoint() //Gets details of endpont, for outputting in logfile 
+def currentRow = context.getProperty("currentRow")//Gets the current row. Use this in file name for creating a unique file for each row 
+ 
+
+
+def jsonRequest  = slurper.parseText(request)  
+def jsonResponse  = slurper.parseText(response) 
+
+
+ 
+//Set up variables used in naming logging folder  
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)  
+def dataFolder = groovyUtils.projectPath //This is the folder where the project resides 
+def env = "test" 
+def folderDate = new Date() //Needed to set the time in next line 
+def folderTime = folderDate.format("yyyy-MM-dd HH-mm-ss") 
+
+
+ 
+
+
+//Setting up locations for logging 
+//The path before the "\\" needs to already exist. The path after the "\\" will be crated 
+  
+FailureFolderPath  = dataFolder + "/Failure Data"  + "\\" + env + "_Margin Tests Missing Fields-OutboundFlightId"  //PATH OF FOLDER TO CREATE 
+
+
+ 
+
+
+//Set up variables used in naming logging file 
+def date = new Date().format("yyyy-MM-dd'T'")  
+def time = new Date().format("HH-mm-ss") 
+def fileName = "Margin_GetMargins - Missing Fields2 Row"+currentRow+ " " +date + time + ".txt"  //NAME OF FILE TO CREATE 
+def FailureFilePath = FailureFolderPath +"/"+ fileName //THIS CREATES THE PATH AND FILENAME FOR FILE TO WRITE TO  
+def logFileFailure = new File(FailureFilePath) //This is the actual file the data is logged to 
+
+
+if (jsonResponse.Margins[0]!=null) 
+{ 
+
+
+ //get value of fields in response 
+ //jsonResponse.Margins.TotalMargin  is being passed as [131], since Margins is an array and TotalMargin is an property(?) within the first array element 
+ def totalMarginRes = jsonResponse.Margins[0].TotalMargin 
+  
+  
+ // Now create and record the result file 
+ //if (xml.'**'.any { it.name() == 'Error' }) -- This invokes logging on error - use for negative tests -- either need to create an xml slurper called xml, or try to do this withe jsonSlurper 
+ //if ( totalMarginRes >= 0 ) //This is the condition for writing to log file 
+ if  (totalMarginRes <= 0)  
+ { 
+  CreateFailuresFolder = new File(FailureFolderPath) 
+  CreateFailuresFolder.mkdir()//CREATES THE DIRECTORY WITH NAME CREATED ABOVE 
+  
+   
+  //Create the data to be writen to the file 
+  def testResult = new StringBuffer() 
+  testResult.append "Test run on DateTime Stamp: " +date+ " " + time 
+  testResult.append "\r\nTotal Margin= " +totalMarginRes 
+  testResult.append"\r\nRow Number= " +currentRow  
+  testResult.append "\r\nENDPOINT: " +endpoint   
+  testResult.append "\r\nSERVICE REQUEST:\n\n" 
+  testResult.append(jsonRequest.toString()) 
+  testResult.append "\r\nSERVICE RESPONSE:\n\n" 
+  testResult.append(jsonResponse.toString()) 
+   
+  logFileFailure.write(testResult.toString())  
+  log.info "totalMarginRes <= 0" 
+  log.info "The location of the failure folder is: " + logFileFailure 
+ } 
+ else 
+ { 
+  log.info "no error found" 
+ } 
+ //END IF  
+} 
+else 
+{ 
+   
+ CreateFailuresFolder = new File(FailureFolderPath) 
+ CreateFailuresFolder.mkdir()//CREATES THE DIRECTORY WITH NAME CREATED ABOVE 
+
+
+ //Create the data to be writen to the file 
+ def testResult = new StringBuffer() 
+ testResult.append "Test run on DateTime Stamp: " +date+ " " + time 
+  
+ testResult.append"\r\nRow Number= " +currentRow  
+ testResult.append "\r\nENDPOINT: " +endpoint   
+ testResult.append "\r\nSERVICE REQUEST:\n\n" 
+ testResult.append(jsonRequest.toString()) 
+ testResult.append "\r\nSERVICE RESPONSE:\n\n" 
+ testResult.append(jsonResponse.toString()) 
+  
+ logFileFailure.write(testResult.toString())  
+ log.info "margin is null" 
+ log.info "The location fo the failure folder is: " + logFileFailure 
+
+
+} 
+
+
+ 
+ 
+
+
+ 
+ConcludeTest script – Just logs to Script log  
+
+
+int currentRow = context.getProperty("currentRow") 
+int totalRecords = context.getProperty("TotalRecords") 
+
+
+  
+log.info "CurrentRow: " + currentRow + " TotalRecords: " + totalRecords  
+if(currentRow <totalRecords){  
+ currentRow=currentRow+1  
+ context.setProperty("currentRow", currentRow)  
+ testRunner.gotoStepByName("SetProperties")  
+ log.info" loop back for data row " + currentRow 
+  
+ }  
+ else  
+ {  
+ log.info "Completed"  
+ } 
+
+
+ 
+
+
+EndClearAppProperty Values script 
+
+
+(Counterpart of StartClearAllPropertyValues script – not sure how this works or how useful it is) 
+
+
+ 
+
+
+context.testCase.properties.each { 
+ context.testCase.properties[it.key].value = '' 
+} 
+context.testCase.testSuite.properties.each { 
+ context.testCase.testSuite.properties[it.key].value = '' 
+} 
+
+
+ 
+ 
+
+
+testRunner.testCase.properties.each  
+{ 
+ if (it.value.name.startsWith("Output_"))  
+ { 
+  testRunner.testCase.setPropertyValue(it.value.name, "") 
+ } 
+} 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+ 
+
+
+ 
+
+
+ 
